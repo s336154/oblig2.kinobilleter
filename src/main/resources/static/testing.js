@@ -1,13 +1,12 @@
 
+const velgfilm = document.getElementById("velgfilm");
+const antall = document.getElementById("antall");
+const fornavn = document.getElementById("fornavn");
+const etternavn = document.getElementById("etternavn");
+const telefonnr = document.getElementById("telefonnr");
+const epost = document.getElementById("epost");
 
 function regFilm() {
-    const velgfilm = document.getElementById("velgfilm").value;
-    const antall = document.getElementById("antall").value;
-    const fornavn = document.getElementById("fornavn").value;
-    const etternavn = document.getElementById("etternavn").value;
-    const telefonnr = document.getElementById("telefonnr").value;
-    const epost = document.getElementById("epost").value;
-
     let ErrorX = false
 
     let filmF = velgfilm;
