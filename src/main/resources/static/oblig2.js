@@ -3,7 +3,7 @@ $(() => {
 
         const velgfilm = $("#velgfilm").val();
         const antall = $("#antall").val();
-        const fornavn = $("#navn").val();
+        const fornavn = $("#fornavn").val();
         const etternavn = $("#etternavn").val();
         const telefonnr = $("#telefonnr").val();
         const epost = $("#epost").val();
@@ -95,11 +95,17 @@ $(() => {
                     }
                     $("#filmene").html(ut);
                 }
-        function slettBilletene() {
+        $(function() {
+            $("#knapp1").click(function () {
+                $("#filmene").remove();
+            });
+        });
+
+     /*   function slettAlle() {
             $.get( "/slettAlle", function() {
                 hentAlle();
             });
-        }
+        } */
 
     });
 });

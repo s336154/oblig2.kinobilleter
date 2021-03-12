@@ -26,7 +26,7 @@ public class KinoController {
         return billeter;
     }
 
-    @GetMapping("/kino")
+    @GetMapping("/slettAlle")
     public void slettAlle(){
         billeter.clear();
     }
