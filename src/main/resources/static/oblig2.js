@@ -101,11 +101,6 @@ $(() => {
             });
         });
 
-     /*   function slettAlle() {
-            $.get( "/slettAlle", function() {
-                hentAlle();
-            });
-        } */
 
     });
 });

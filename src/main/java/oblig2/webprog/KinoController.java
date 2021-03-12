@@ -26,10 +26,6 @@ public class KinoController {
         return billeter;
     }
 
-    @GetMapping("/slettAlle")
-    public void slettAlle(){
-        billeter.clear();
-    }
 
 
 
