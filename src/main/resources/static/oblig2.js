@@ -16,16 +16,7 @@ $(() => {
             telefonnr: telefonnr,
             epost: epost,
         };
- 
 
-        $.post("/kino", enBillet, function(){
-            hentAlle();
-        });
-        function hentAlle() {
-            $.get( "/kino", function( data ) {
-                formaterData(data);
-            });
-        }
 
 
         /*   $.post("/kino", enBillet, function (){
@@ -75,21 +66,38 @@ $(() => {
             }
 
             else {
-                function formaterData(billeter){
-                    let ut = "<table>" +
-                        "<tr><th>Film</th><th>Antall</th><th>Fornavn</th>" +
-                        "<th>Etternavn</th><th>Telefonnr</th><th>Epost</th></tr>";
-                    for (let film of billeter) {
-                        ut += "<tr><td>" + film.velgfilm + "</td><td>" + film.antall + "</td><td>" + film.fornavn + "</td>" +
-                            "<td>" + film.etternavn + "</td><td>" + film.telefonnr + "</td><td>" + film.epost + "</td></tr>";
+                $.post("/lagre", enBillet, function(){
+                    hentAlle();
+                });
+                $("#velgfilm").val("");
+                $("#antall").val("");
+                $("#fornavn").val("");
+                $("#etternavn").val("");
+                $("#telefonnr").val("");
+                $("#epost").val("");
+            }
+
+        function hentAlle() {
+            $.get( "/hentAlle", function(data) {
+                formaterData(data);
+            });
+        }
+
+        function formaterData(billeter){
+
+                    let ut = "<table class='table table-striped table-bordered'><tr>" +
+                        "<th><b>Film</b></th><th><b>Antall</b></th><th><b>Fornavn</b></th><th><b>Etternavn</b></th><th><b>Telefonnr</b></th><th><b>Epost</b></th>" +
+                        "</tr>";
+                    for (let B of billeter) {
+                        ut += "<tr>";
+                        ut += "<td>" + B.velgfilm + "</td><td>" + B.antall + "</td><td>" + B.fornavn + "</td><td>" + B.etternavn + "</td><td>" + B.telefonnr + "</td><td>" + B.epost + "</td>";
+                        ut += "</tr>";
                     }
-                    ut += "</table>";
                     $("#filmene").html(ut);
-                } }
-
-        function slettAlle() {
-            $.get("/kino", enBillet, function () {
-
+                }
+        function slettBilletene() {
+            $.get( "/slettAlle", function() {
+                hentAlle();
             });
         }
 

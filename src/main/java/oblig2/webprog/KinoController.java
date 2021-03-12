@@ -1,6 +1,9 @@
 package oblig2.webprog;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import org.springframework.web.bind.annotation.*;
 
 
@@ -14,11 +17,11 @@ public class KinoController {
 
     private final List<Billet> billeter= new ArrayList<>();
 
-    @PostMapping("/kino")
+    @PostMapping("/lagre")
     public void lagreBillet(Billet enBillet){
         billeter.add(enBillet);
     }
-    @GetMapping("/kino")
+    @GetMapping("/hentAlle")
     public List<Billet> hentAlle(){
         return billeter;
     }
