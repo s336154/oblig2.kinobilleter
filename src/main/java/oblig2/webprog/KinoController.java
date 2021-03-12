@@ -23,6 +23,7 @@ public class KinoController {
         return sal.hentAlle();
     }
 
+
     @DeleteMapping("/kino")
     public void slett() {
         sal.slettAlle();
