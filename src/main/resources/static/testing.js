@@ -1,24 +1,14 @@
 
-function hentData () {
-    const kunde = {
-        velgfilm :  $("#velgfilm").val(),
-        antall : Number($("#antall").val()),
-        fornavn :  $("#fornavn").val(),
-        etternavn :  $("#etternavn").val(),
-        telefonnr :  Number($("#telefonnr").val()),
-        epost : $("#epost").val()
-    };
-    $.post("/kino", Billet, function(data) {
-        $("#utFilm").html(data.velgfilm);
-        $("#utAntall").html(data.antall);
-        $("#utFornavn").html(data.fornavn);
-        $("#utEtternavn").html(data.etternavn);
-        $("#utTelefonnr").html(data.telefonnr);
-        $("#utEpost").html(data.epost);
-    });
-}
-function check (){
-let ErrorX = false;
+
+function regFilm() {
+    const velgfilm = document.getElementById("velgfilm").value;
+    const antall = document.getElementById("antall").value;
+    const fornavn = document.getElementById("fornavn").value;
+    const etternavn = document.getElementById("etternavn").value;
+    const telefonnr = document.getElementById("telefonnr").value;
+    const epost = document.getElementById("epost").value;
+
+    let ErrorX = false
 
     let filmF = velgfilm;
     let antallF = antall;
@@ -27,64 +17,79 @@ let ErrorX = false;
     let telefonnrF = telefonnr;
     let epostF = epost;
 
-
-
     if (filmF === "velg film her") {
-        $("#filmX").html("må velge film");
+        document.getElementById("filmX").innerHTML = "må velge film";
         ErrorX = true;
     } else if (antallF === "") {
-        $("#antallX").html("må skrive noe inn i antall");
+        document.getElementById("antallX").innerHTML = "må skrive noe inn i antall";
         ErrorX = true;
-    } else if (antallF === "NaN") {
-        $("#antallX").html("må skrive tall i antall");
+    } else if (isNaN(antallF)) {
+        document.getElementById("antallX").innerHTML = "må skrive noe inn riktig antall";
         ErrorX = true;
     } else if (fornavnF === "") {
-        $("fornavnX").html("må skrive noe inn i fornavnet");
+        document.getElementById("fornavnX").innerHTML = "må skrive noe inn i fornavnet";
         ErrorX = true;
     } else if (etternavnF === "") {
-        $("etternavnX").html("må skrive noe inn etternavnet");
+        document.getElementById("etternavnX").innerHTML = "må skrive noe inn etternavnet";
         ErrorX = true;
     } else if (telefonnrF === "") {
-        $("telefonnrX").html("må skrive noe inn i telefonnr");
+        document.getElementById("telefonnrX").innerHTML = "må skrive noe inn telefonnr";
         ErrorX = true;
-    } else if (telefonnrF === "NaN") {
-        $("telefonnrX").html("må skrive noe inn riktig telefonnr");
+    } else if (isNaN(telefonnrF)) {
+        document.getElementById("telefonnrX").innerHTML = "må skrive noe inn riktig telefonnr";
         ErrorX = true;
     } else if (epostF === "") {
-        $("epostX").html("må skrive noe inn i epost");
+        document.getElementById("epostX").innerHTML = "må skrive noe inn i epost";
         ErrorX = true;
     }
-    else {
-        if (ErrorX === true) {
-            return;
+    if (ErrorX === true) {
+        return;
+    } else {
 
-        } else {
-            const kinoBilleter = [];
-            const billet = {
-                velgfilm: velgfilm,
-                antall: antall,
-                fornavn: fornavn,
-                etternavn: etternavn,
-                telefonnr: telefonnr,
-                epost: epost
-            };
-            kinoBilleter.push(billet);
-            let ut = "<table><tr>" +
-                "<th><b>Film</b></th><th><b>Antall</b></th><th><b>Fornavn</b></th><th><b>Etternavn</b></th><th><b>Telefonnr</b></th><th><b>Epost</b></th>" +
-                "</tr>";
-            for (let B of kinoBilleter) {
-                ut += "<tr>";
-                ut += "<td>" + B.velgfilm + "</td><td>" + B.antall + "</td><td>" + B.fornavn + "</td><td>" + B.etternavn + "</td><td>" + B.telefonnr + "</td><td>" + B.epost + "</td>";
-                ut += "</tr>";
-            }
-            $("#bestillingen").html(ut);
+        const enBillet = {
+            velgfilm: velgfilm.value(),
+            antall: antall.value(),
+            fornavn: fornavn.value(),
+            etternavn: etternavn.value(),
+            telefonnr: telefonnr.value(),
+            epost: epost.value(),
+        };
+        billeter.push(enBillet);
+        $.post("/kino", Billet, function(){
+            hentAlle();
+        });
 
-        }
+        $("#velgfilm").val("");
+        $("#antall").val("");
+        $("#fornavn").val("");
+        $("#etternavn").val("");
+        $("#telefonnr").val("");
+        $("#epost").val("");
     }
 
-    $(function() {
-        $("#knapp1").click(function () {
-            $("#bestillingen").remove();
+    function hentAlle() {
+        $.get( "/kino", function( data ) {
+            formaterData(data);
         });
-    }); }
+    }
+    function formaterData(data) {
 
+        let ut = "<table class='table table-striped table-bordered'><tr>" +
+            "<th><b>Film</b></th><th><b>Antall</b></th><th><b>Fornavn</b></th><th><b>Etternavn</b></th><th><b>Telefonnr</b></th><th><b>Epost</b></th>" +
+            "</tr>";
+        for (let B of Billeter) {
+            ut += "<tr>";
+            ut += "<td>" + B.velgfilm + "</td><td>" + B.antall + "</td><td>" + B.fornavn + "</td><td>" + B.etternavn + "</td><td>" + B.telefonnr + "</td><td>" + B.epost + "</td>";
+            ut += "</tr>";
+        }
+        document.getElementById("filmene").innerHTML = ut;
+    }
+
+    $("#slettAlle").click(() => {
+        $.ajax("/kino", {
+            type: 'DELETE',
+            success: () => hent(),
+            error: (jqXhr, textStatus, errorMessage) => console.log(errorMessage)
+        });
+    });
+   }
