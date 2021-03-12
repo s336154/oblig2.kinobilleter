@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kino billeter</title>
+    <script src="oblig2.js"></script>
+    <script src="//code.jquery.com/jquery-3.4.1.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4"
+             style="background-color: lightslategrey">
+
+
+
+            <h2><b>Bestlling av kinobilleter</b></h2>
+
+
+            <label for="velgfilm"><b>Velg film: </b></label>
+            <select id="velgfilm">
+                <option> velg film her</option>
+                <option>Superman</option>
+                <option>Spiderman</option>
+                <option>Titanic</option>
+                <option>A walk to remeber</option>
+                <option>Batman</option>
+                <option>Pokemon</option>
+                <option>Cindrella</option>
+            </select> <span id="filmX" style="color:red"> </span>
+
+            </br></br>
+
+            <label for="antall"><b> Antall </b></label>
+
+            <input type="text" id="antall"/><span id="antallX" style="color:red"> </span>
+
+            </br></br>
+            <table>
+                <tr>
+                    <td><b>Fornavn </b> </td><td><input type="text" id="fornavn"/></td><td><span id="fornavnX" style="color:red"> </span></td>
+                </tr>
+                <tr>
+                    <td><b>Etternavn</b> </td><td><input type="text" id="etternavn"/></td><td><span id="etternavnX" style="color:red"> </span></td>
+                </tr>
+                <tr>
+                    <td><b>Telefonnr</b> </td><td><input type="text" id="telefonnr"/></td><td><span id="telefonnrX" style="color:red"> </span></td>
+                </tr>
+                <tr>
+                    <td><b>Epost</b> </td><td><input type="text" id="epost"/></td><td><span id="epostX" style="color:red"> </span></td>
+                </tr>
+                <tr>
+                    <td><button class="btn btn-info"   id="regFilm">Kjøp billet</button></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-lg-8"
+             style="background-color: whitesmoke">
+
+
+            <h3><b> Alle billetter </b> </h3>
+            <div id="filmene"></div></br>
+
+            <button class="btn btn-warning"   id="slettAlle"> Slett alle billettene </button>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
