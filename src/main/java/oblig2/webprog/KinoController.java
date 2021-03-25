@@ -1,11 +1,10 @@
 package oblig2.webprog;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +24,12 @@ public class KinoController {
     public List<Billet> hentAlle(){
         return billeter;
     }
+
+    @GetMapping("/slettAlle")
+    public void slettAlle(){
+        billeter.clear();
+    }
+
 
 
 

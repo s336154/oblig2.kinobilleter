@@ -77,6 +77,10 @@ $(() => {
                 $("#epost").val("");
             }
 
+    });
+});
+
+
         function hentAlle() {
             $.get( "/hentAlle", function(data) {
                 formaterData(data);
@@ -95,14 +99,17 @@ $(() => {
                     }
                     $("#filmene").html(ut);
                 }
-        $(function() {
+
+    /*    $(function() {
             $("#knapp1").click(function () {
                 $("#filmene").remove();
             });
-        });
+        }); */
 
-
+function slettAlle() {
+    $.get("/slettAlle", function() {
+        hentAlle();
     });
-});
+}
 
 
