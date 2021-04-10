@@ -66,16 +66,17 @@ $(() => {
             }
 
             else {
-                $.post("/lagre", enBillet, function(){
+                $.post("/lagre", enBillet, function () {
                     hentAlle();
                 });
+
+            }
                 $("#velgfilm").val("");
                 $("#antall").val("");
                 $("#fornavn").val("");
                 $("#etternavn").val("");
                 $("#telefonnr").val("");
                 $("#epost").val("");
-            }
 
     });
 });
@@ -97,6 +98,8 @@ $(() => {
                         ut += "<td>" + B.velgfilm + "</td><td>" + B.antall + "</td><td>" + B.fornavn + "</td><td>" + B.etternavn + "</td><td>" + B.telefonnr + "</td><td>" + B.epost + "</td>";
                         ut += "</tr>";
                     }
+
+                    ut += "</table>"
                     $("#filmene").html(ut);
                 }
 
